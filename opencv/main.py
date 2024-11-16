@@ -3,6 +3,7 @@ import pytesseract
 import os
 from pathlib import Path
 
+
 def extractDay(file_path):
    # 画像を読み込む
     img = cv2.imread(file_path)
@@ -14,13 +15,15 @@ def extractDay(file_path):
     print(text)
 
     # 二値化 (適宜閾値を調整)
-    thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
+    thresh = cv2.threshold(
+        gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
     text = pytesseract.image_to_string(thresh, lang='jpn')  # 日本語の場合
     print('threshold')
     print(text)
 
     # 輪郭検出 (必要に応じて)
-    contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours, _ = cv2.findContours(
+        thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     # 輪郭から最小の外接矩形を取得し、その部分の画像を切り出す
     print('boundingRect')
@@ -30,8 +33,6 @@ def extractDay(file_path):
 
         # OCRでテキストに変換
         text = pytesseract.image_to_string(roi, lang='jpn')  # 日本語の場合
-        text = text.replace(' ','')
-        if text != '':
             print(text)
 
 

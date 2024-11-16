@@ -19,7 +19,7 @@
 	// "remoteUser": "root"
 	,
 	"mounts": [
-		"source=${localWorkspaceFolder}/../sample,target=/sample,type=bind,consistency=cached",
-	],
+		"source=${localWorkspaceFolder}/../sample,target=/sample,type=bind,consistency=cached"
+	]
 	// "postAttachCommand": ". ./venv/bin/activate" // venv有効にならなかった(きっと別プロセスのbashを適用しているんだろう)
 }
